@@ -95,7 +95,7 @@ export class Entity {
 
     let response;
     return this.getTransport()
-      .create(this.getResource(), this.asObject(true))
+      .create(this.getResource(), this.asObject(false))
       .then((created) => {
         this.id  = created.id;
         response = created;
@@ -127,7 +127,7 @@ export class Entity {
         .then(() => null);
     }
 
-    let requestBody = this.asObject(true);
+    let requestBody = this.asObject(false);
     let response;
 
     delete requestBody.id;
@@ -590,7 +590,7 @@ function getCollectionsCompact(forEntity, includeNew) {
  */
 function getFlat(entity, json) {
   let flat = {
-    entity: asObject(entity, true),
+    entity: asObject(entity, false),
     collections: getCollectionsCompact(entity)
   };
 
