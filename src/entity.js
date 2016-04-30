@@ -253,7 +253,7 @@ export class Entity {
    * @return {Entity}
    */
   markClean() {
-    let cleanValues    = getFlat(this);
+    let cleanValues    = getFlat(this, false, true);
     this.__cleanValues = {
       checksum: JSON.stringify(cleanValues),
       data: cleanValues
@@ -268,7 +268,7 @@ export class Entity {
    * @return {boolean}
    */
   isClean() {
-    return getFlat(this, true) === this.__cleanValues.checksum;
+    return getFlat(this, true, false) === this.__cleanValues.checksum;
   }
 
   /**
@@ -588,9 +588,9 @@ function getCollectionsCompact(forEntity, includeNew) {
  *
  * @return {{entity, collections}}
  */
-function getFlat(entity, json) {
+function getFlat(entity, json, shallow) {
   let flat = {
-    entity: asObject(entity, false),
+    entity: asObject(entity, !!shallow),
     collections: getCollectionsCompact(entity)
   };
 
