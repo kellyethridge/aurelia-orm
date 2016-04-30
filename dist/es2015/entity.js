@@ -150,7 +150,7 @@ export let Entity = (_dec = transient(), _dec2 = inject(Validation), _dec(_class
   }
 
   markClean() {
-    let cleanValues = getFlat(this);
+    let cleanValues = getFlat(this, false, true);
     this.__cleanValues = {
       checksum: JSON.stringify(cleanValues),
       data: cleanValues
@@ -160,7 +160,7 @@ export let Entity = (_dec = transient(), _dec2 = inject(Validation), _dec(_class
   }
 
   isClean() {
-    return getFlat(this, true) === this.__cleanValues.checksum;
+    return getFlat(this, true, false) === this.__cleanValues.checksum;
   }
 
   isDirty() {
@@ -363,9 +363,9 @@ function getCollectionsCompact(forEntity, includeNew) {
   return collections;
 }
 
-function getFlat(entity, json) {
+function getFlat(entity, json, shallow) {
   let flat = {
-    entity: asObject(entity, false),
+    entity: asObject(entity, !!shallow),
     collections: getCollectionsCompact(entity)
   };
 

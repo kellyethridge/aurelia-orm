@@ -193,7 +193,7 @@ var Entity = exports.Entity = (_dec = (0, _aureliaDependencyInjection.transient)
   };
 
   Entity.prototype.markClean = function markClean() {
-    var cleanValues = getFlat(this);
+    var cleanValues = getFlat(this, false, true);
     this.__cleanValues = {
       checksum: JSON.stringify(cleanValues),
       data: cleanValues
@@ -203,7 +203,7 @@ var Entity = exports.Entity = (_dec = (0, _aureliaDependencyInjection.transient)
   };
 
   Entity.prototype.isClean = function isClean() {
-    return getFlat(this, true) === this.__cleanValues.checksum;
+    return getFlat(this, true, false) === this.__cleanValues.checksum;
   };
 
   Entity.prototype.isDirty = function isDirty() {
@@ -408,9 +408,9 @@ function getCollectionsCompact(forEntity, includeNew) {
   return collections;
 }
 
-function getFlat(entity, json) {
+function getFlat(entity, json, shallow) {
   var flat = {
-    entity: _asObject(entity, false),
+    entity: _asObject(entity, !!shallow),
     collections: getCollectionsCompact(entity)
   };
 
