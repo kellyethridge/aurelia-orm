@@ -67,7 +67,7 @@ define(['exports', 'aurelia-validation', 'aurelia-dependency-injection', './orm-
       }
 
       var response = void 0;
-      return this.getTransport().create(this.getResource(), this.asObject(true)).then(function (created) {
+      return this.getTransport().create(this.getResource(), this.asObject(false)).then(function (created) {
         _this.id = created.id;
         response = created;
       }).then(function () {
@@ -94,7 +94,7 @@ define(['exports', 'aurelia-validation', 'aurelia-dependency-injection', './orm-
         });
       }
 
-      var requestBody = this.asObject(true);
+      var requestBody = this.asObject(false);
       var response = void 0;
 
       delete requestBody.id;
@@ -413,7 +413,7 @@ define(['exports', 'aurelia-validation', 'aurelia-dependency-injection', './orm-
 
   function getFlat(entity, json) {
     var flat = {
-      entity: _asObject(entity, true),
+      entity: _asObject(entity, false),
       collections: getCollectionsCompact(entity)
     };
 

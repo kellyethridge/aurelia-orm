@@ -1,6 +1,5 @@
 declare module 'aurelia-orm' {
   import {
-    Validation,
     ValidationRule
   } from 'aurelia-validation';
   export class DefaultRepository extends Repository {

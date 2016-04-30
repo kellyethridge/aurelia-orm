@@ -47,7 +47,7 @@ export let Entity = (_dec = transient(), _dec2 = inject(Validation), _dec(_class
     }
 
     let response;
-    return this.getTransport().create(this.getResource(), this.asObject(true)).then(created => {
+    return this.getTransport().create(this.getResource(), this.asObject(false)).then(created => {
       this.id = created.id;
       response = created;
     }).then(() => this.saveCollections()).then(() => this.markClean()).then(() => response);
@@ -62,7 +62,7 @@ export let Entity = (_dec = transient(), _dec2 = inject(Validation), _dec(_class
       return this.saveCollections().then(() => this.markClean()).then(() => null);
     }
 
-    let requestBody = this.asObject(true);
+    let requestBody = this.asObject(false);
     let response;
 
     delete requestBody.id;
@@ -365,7 +365,7 @@ function getCollectionsCompact(forEntity, includeNew) {
 
 function getFlat(entity, json) {
   let flat = {
-    entity: asObject(entity, true),
+    entity: asObject(entity, false),
     collections: getCollectionsCompact(entity)
   };
 
