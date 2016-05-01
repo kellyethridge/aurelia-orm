@@ -193,7 +193,7 @@ var Entity = exports.Entity = (_dec = (0, _aureliaDependencyInjection.transient)
   };
 
   Entity.prototype.markClean = function markClean() {
-    var cleanValues = getFlat(this, false, true);
+    var cleanValues = getFlat(this, false, false);
     this.__cleanValues = {
       checksum: JSON.stringify(cleanValues),
       data: cleanValues

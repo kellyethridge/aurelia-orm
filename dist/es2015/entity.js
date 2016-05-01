@@ -150,7 +150,7 @@ export let Entity = (_dec = transient(), _dec2 = inject(Validation), _dec(_class
   }
 
   markClean() {
-    let cleanValues = getFlat(this, false, true);
+    let cleanValues = getFlat(this, false, false);
     this.__cleanValues = {
       checksum: JSON.stringify(cleanValues),
       data: cleanValues

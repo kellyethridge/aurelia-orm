@@ -330,7 +330,7 @@ System.register(['aurelia-validation', 'aurelia-dependency-injection', './orm-me
         };
 
         Entity.prototype.markClean = function markClean() {
-          var cleanValues = getFlat(this, false, true);
+          var cleanValues = getFlat(this, false, false);
           this.__cleanValues = {
             checksum: JSON.stringify(cleanValues),
             data: cleanValues

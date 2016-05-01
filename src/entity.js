@@ -253,7 +253,7 @@ export class Entity {
    * @return {Entity}
    */
   markClean() {
-    let cleanValues    = getFlat(this, false, true);
+    let cleanValues    = getFlat(this, false, false);
     this.__cleanValues = {
       checksum: JSON.stringify(cleanValues),
       data: cleanValues
